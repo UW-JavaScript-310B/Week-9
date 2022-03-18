@@ -31,8 +31,6 @@ const createMessageHolder = () => {
     getMessage
   };
 
-
-
 };
 
 // Test
@@ -68,7 +66,13 @@ console.log(addThree(41));
 // This will return a function a function greet
 // - This accepts a single argument, name (i.e. "Matt")
 // - This function should return the greeting combined with the name, (i.e. "Hello Matt")
-const createGreeting = function(greeting) {};
+const createGreeting = function(greeting) {
+
+  const greet = function(name){
+    return `${greeting} ${name}`
+  }
+  return greet
+};
 
 // Test
 const welcomeGreet = createGreeting('Welcome');
