@@ -3,7 +3,6 @@ const createCounter = () => {
   let count = 0;
   const getCount = () => count;
   const increaseCount = () => count++;
-
   return {
     getCount,
     increaseCount
@@ -19,8 +18,17 @@ console.log(counter.getCount());
 // return an object with the following methods:
 // - addMessage method that adds a message to the array
 // - getMessage(index) method that returns the message at index index
-
-const createMessageHolder = () => {};
+const createMessageHolder = () => {
+  let messages = [];
+  const addMessage = (message) => {
+    messages.push(messages);
+  }
+  const getMessage = (i) => messages[i];
+  return {
+    addMessage,
+    getMessage
+  };
+};
 
 // Test
 const messageHolder = createMessageHolder();
@@ -55,7 +63,12 @@ console.log(addThree(41));
 // This will return a function a function greet
 // - This accepts a single argument, name (i.e. "Matt")
 // - This function should return the greeting combined with the name, (i.e. "Hello Matt")
-const createGreeting = function(greeting) {};
+const createGreeting = function(greeting) {
+  const greet = (name) => {
+    return `${greeting}, ${name}`;
+  };
+  return greet;
+};
 
 // Test
 const welcomeGreet = createGreeting('Welcome');
