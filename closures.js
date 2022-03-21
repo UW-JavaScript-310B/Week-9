@@ -68,10 +68,9 @@ console.log(addThree(41));
 // - This function should return the greeting combined with the name, (i.e. "Hello Matt")
 const createGreeting = function(greeting) {
 
-  const greet = function(name){
+  return function (name) {
     return `${greeting} ${name}`
   }
-  return greet
 };
 
 // Test
