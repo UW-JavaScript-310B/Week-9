@@ -1,11 +1,15 @@
 // Example
+let value = 12;
+
 const createCounter = () => {
   let count = 0;
   const getCount = () => count;
+  const getValue = () => value;
   const increaseCount = () => count++;
 
   return {
     getCount,
+    getValue,
     increaseCount
   };
 };
@@ -20,7 +24,16 @@ console.log(counter.getCount());
 // - addMessage method that adds a message to the array
 // - getMessage(index) method that returns the message at index index
 
-const createMessageHolder = () => {};
+const createMessageHolder = () => { 
+  const messageArray = [];
+  const addMessage = message => messageArray.push(message);
+  const getMessage = index => messageArray[index];
+
+  return {
+    addMessage,
+    getMessage
+  }
+};
 
 // Test
 const messageHolder = createMessageHolder();
@@ -30,15 +43,15 @@ console.log(messageHolder.getMessage(0));
 // "Hello!""
 
 // Example: non-currying
-const addNumbers = function(num1, num2) {
+const addNumbers = function (num1, num2) {
   return num1 + num2;
 };
 console.log(addNumbers(5, 3));
 // 8
 
 // Example: currying
-const addToNumber = function(num1) {
-  const addToFirst = function(num2) {
+const addToNumber = function (num1) {
+  const addToFirst = function (num2) {
     return num1 + num2;
   };
   return addToFirst;
@@ -55,7 +68,12 @@ console.log(addThree(41));
 // This will return a function a function greet
 // - This accepts a single argument, name (i.e. "Matt")
 // - This function should return the greeting combined with the name, (i.e. "Hello Matt")
-const createGreeting = function(greeting) {};
+const createGreeting = function (greeting) {
+  const greet = function (name) {
+    return `${greeting}, ${name}`
+  }
+  return greet;
+};
 
 // Test
 const welcomeGreet = createGreeting('Welcome');
