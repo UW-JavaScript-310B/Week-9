@@ -51,8 +51,6 @@ function gamePlay(e) {
   rules.style.display = 'none';
 
   // Hide icons
-  document.getElementById('results').innerText = '';
-
   icons.style.display = 'none';
   interface.style.display = 'none';
   
@@ -83,19 +81,19 @@ function gamePlay(e) {
   gamePlayRight.appendChild(opponentName);
 
   // Add click event listener to left game play div to catch bubbling clicks on icons
-  gamePlayLeft.addEventListener('click', initiateComputer);
+  gamePlayLeft.addEventListener('click', initiateOpponentTurn);
 }
 
-function initiateComputer(e) {
+function initiateOpponentTurn(e) {
     // Manage user clicks and initiate call to rock paper scissors API
     if(e.target.classList.contains('fas')) {
       e.target.style.borderColor = 'red';
-      gamePlayLeft.removeEventListener('click', initiateComputer);
-      computerThinks(e.target.id);
+      gamePlayLeft.removeEventListener('click', initiateOpponentTurn);
+      opponentThinkingAnimation(e.target.id);
     }
 }
 
-function computerThinks(playerChoice) {
+function opponentThinkingAnimation(playerChoice) {
   document.getElementById('gamePlayRight').querySelector('h5').innerText = 'Thinking';
   
   let counter = 0;
@@ -104,12 +102,12 @@ function computerThinks(playerChoice) {
     counter++;
     if(counter >= 5) { 
       clearInterval(thinking);
-      computerChooses(playerChoice);
+      opponentChooses(playerChoice);
     }
   }, 500);
 }
 
-function computerChooses(playerChoice) {
+function opponentChooses(playerChoice) {
   fetch(`https://rock-paper-scissor2.p.rapidapi.com/api/${playerChoice}`, {
     "method": "GET",
     "headers": {
@@ -119,54 +117,54 @@ function computerChooses(playerChoice) {
   })
   .then(data => data.json())
   .then(response => {
-    let side = document.getElementById('gamePlayRight');
-    let choice = side.querySelector(`#${response.computer}`);
-    choice.style.borderColor = 'red';
-    outputResults(response);
+    const opponentSide = document.getElementById('gamePlayRight');
+    opponentSide.querySelector(`#${response.computer}`).style.borderColor = 'red';
+    outputRoundResults(response);
   })
   .catch(err => {
     console.error(err);
   });
 }
 
-function outputResults(response) {
+function outputRoundResults(response) {
   const resultsText = document.createElement('h3');
-  console.log(response);
+
   if(response.cstat === 'computer won') {
     resultsText.innerHTML = `${capitalize(response.computer)}<br>BEATS<br>${capitalize(response.you)}<br><hr>Computer<br>Wins<br><hr>`;
-    localStorage.setItem('computerScore', +localStorage.getItem('computerScore') + 1)
+    localStorage.setItem('computerScore', +localStorage.getItem('computerScore') + 1);
   }
   else if (response.pstat === 'you won'){
     resultsText.innerHTML = `${capitalize(response.you)}<br>BEATS<br>${capitalize(response.computer)}<br><hr>${localStorage.getItem('firstName')}<br>Wins<br><hr>`;
-    localStorage.setItem('playerScore', +localStorage.getItem('playerScore') + 1)
+    localStorage.setItem('playerScore', +localStorage.getItem('playerScore') + 1);
   }
   else {
-    resultsText.innerText = `Draw`;
+    resultsText.innerHTML = `Draw<br><hr>`;
   }
   results.appendChild(resultsText);
 
   const roundsToWin = Math.ceil(localStorage.getItem('gameRounds') / 2);
 
   if(localStorage.getItem('playerScore') >= roundsToWin || localStorage.getItem('computerScore') >= roundsToWin ) {
-    gameOver();
+    gameOverMenu();
   }
   else {
-    nextRound();
+    nextRoundMenu();
   }
 }
 
-function nextRound() {
+function nextRoundMenu() {
   let resumeButton = document.createElement('button');
   resumeButton.innerText = `Begin next round`;
   resumeButton.classList.add('btn', 'btn-primary', 'btn-large');
   resumeButton.addEventListener('click', (e) => {
+    document.getElementById('results').innerText = '';
     resumeButton.remove();
     gamePlay(e);
   });
   results.appendChild(resumeButton);
 }
 
-function gameOver() {
+function gameOverMenu() {
   let newGameButton = document.createElement('button');
   newGameButton.innerText = `Play again`;
   newGameButton.classList.add('btn', 'btn-primary', 'btn-large');
@@ -186,6 +184,7 @@ function addIcons(element) {
     let iconElement = document.createElement('i');
     iconSet[icon].classes.forEach(classToAdd => iconElement.classList.add(classToAdd));
     iconElement.id = iconSet[icon].id;
+    setAttributes(iconElement, {title: capitalize(iconSet[icon].id)});
     gamePlayDiv.appendChild(iconElement);
   }
 
