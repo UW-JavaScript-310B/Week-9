@@ -130,12 +130,14 @@ function outputRoundResults(response) {
   const resultsText = document.createElement('h3');
 
   if(response.cstat === 'computer won') {
-    resultsText.innerHTML = `${capitalize(response.computer)}<br>BEATS<br>${capitalize(response.you)}<br><hr>Computer<br>Wins<br><hr>`;
+    resultsText.innerHTML = `${capitalize(response.computer)}<br>BEATS<br>${capitalize(response.you)}`;
     localStorage.setItem('computerScore', +localStorage.getItem('computerScore') + 1);
+    document.querySelector('#gamePlayRight h4').innerText = `Score = ${localStorage.getItem('computerScore')}`;
   }
   else if (response.pstat === 'you won'){
-    resultsText.innerHTML = `${capitalize(response.you)}<br>BEATS<br>${capitalize(response.computer)}<br><hr>${localStorage.getItem('firstName')}<br>Wins<br><hr>`;
+    resultsText.innerHTML = `${capitalize(response.you)}<br>BEATS<br>${capitalize(response.computer)}`;
     localStorage.setItem('playerScore', +localStorage.getItem('playerScore') + 1);
+    document.querySelector('#gamePlayLeft h4').innerText = `Score = ${localStorage.getItem('playerScore')}`;
   }
   else {
     resultsText.innerHTML = `Draw<br><hr>`;
@@ -165,6 +167,12 @@ function nextRoundMenu() {
 }
 
 function gameOverMenu() {
+
+  let message = document.createElement('h5');
+  let winner = '';
+  localStorage.getItem('computerScore') > localStorage.getItem('playerScore') ? winner = 'Computer' : winner = localStorage.getItem('firstName');
+  message.innerText = `${winner} wins!`;
+  
   let newGameButton = document.createElement('button');
   newGameButton.innerText = `Play again`;
   newGameButton.classList.add('btn', 'btn-primary', 'btn-large');
@@ -172,6 +180,7 @@ function gameOverMenu() {
     newGameButton.remove();
     gameReset();
   });
+  results.appendChild(message);
   results.appendChild(newGameButton);
 }
 
