@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Cousine:wght@700&family=Lato:ital,wght@0,100;0,400;0,700;1,400&display=swap');
+
+body {
+  background-color: antiquewhite;
+}
+
+h1 {
+  font-family: Bungee, Arial, sans-serif;
+  font-size: 6vw;
+  margin: 30px 0 0 0;
+  border: 2px solid #777;
+  border-radius: 0.5vw;
+}
+
+#icons {
+  font-size: 4vw;
+  margin: 30px 0;
+}
+
+#icons i {
+  margin: 5px 20px;
+  padding: 2.5vw;
+  color:rgb(41, 41, 41);
+  border: 1vw solid rgb(29, 111, 218);
+  border-radius: 90px;
+  width: 11vw;
+  height: 11vw;
+  background-color:rgb(209, 209, 209);
+  transition: all 0.1s ease;
+}
+
+#gamePlay h4 {
+  padding-top: 20px;
+}
+
+#gamePlayLeft {
+  border-right: 2px solid #777;
+}
+
+#gamePlayLeft i {
+  transform: scale(-1, 1);
+}
+
+#gamePlayLeft i:hover {
+  transform: scale(-110%, 110%);
+  box-shadow: 0 0 1rem rgb(119, 119, 119);
+}
+
+#gamePlayRight {
+  border-left: 2px solid #777;
+}
+
+#results {
+  text-align: center;
+}
+
+#firstName{
+  display: block;
+}
+
+#startGame {
+  display: block;
+}
