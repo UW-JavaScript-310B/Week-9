@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE-edge">
+  <meta name="viewpot" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://kit.fontawesome.com/9bfbb90b34.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="row text-center align-items-center">
+      <div class="col-12">
+        <h1>Rock Paper Scissors</h1>
+      </div>
+    </div>
+
+    <div class="row text-center align-items-center">
+      <div id="icons" class="col-12">
+        <i class="fas fa-hand-rock"></i><i class="fas fa-hand-paper"></i><i class="fas fa-hand-scissors"></i>
+      </div>
+    </div>
+
+    <div class="row">
+      <div id="interface" class="col-6 offset-3">
+        <form id="startForm">
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-3 col-form-label">First name</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" pattern="\w{3,}" id="firstName" placeholder="First name..." required>
+            </div>
+          </div>
+          <fieldset class="form-group">
+            <div class="row">
+              <legend class="col-form-label col-sm-3 pt-0">Best of...</legend>
+              <div class="col-sm-9">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gameRounds" id="gameRounds1" value="1" checked>
+                  <label class="form-check-label" for="1">
+                    1 round
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gameRounds" id="gameRounds2" value="3">
+                  <label class="form-check-label" for="3">
+                    3 rounds
+                  </label>
+                </div>
+                <div class="form-check disabled">
+                  <input class="form-check-input" type="radio" name="gameRounds" id="gameRounds3" value="5">
+                  <label class="form-check-label" for="5">
+                    5 rounds
+                  </label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <div class="form-group row">
+            <div class="col-sm-10 offset-sm-3">
+              <button id="startButton" type="submit" class="btn btn-primary btn-lg">Let the battle commence!</button>
+            </div>
+          </div>
+        </form>
+        <div id="rules" class="row">
+          <div class="col-sm-10 offset-sm-3">
+            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal">
+              Rules
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="gamePlay" class="row text-center align-items-center">
+      <div id="gamePlayLeft" class="col-5"></div>
+      <div id="results" class="col-2"></div>
+      <div id="gamePlayRight" class="col-5"></div>
+    </div>
+
+    <!--<div class="row text-center align-items-center">
+      <div id="results" class="col-12"></div>
+    </div>--!>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Rock Paper Scissors Rules</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body text-center">
+                  <img src="./rps_rules.png" width="400" alt="Rock Paper Scissors Rules">
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+      </div>
+  </div>
+  <script src="./script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script></body>
+    </body>
+</html>
